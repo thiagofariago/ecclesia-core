@@ -1,0 +1,30 @@
+# FastAPI core
+fastapi
+uvicorn[standard]
+
+# Database
+sqlalchemy>=2.0
+alembic
+psycopg2-binary
+
+# Data validation
+pydantic>=2.0
+pydantic-settings
+
+# Authentication
+python-jose[cryptography]
+passlib[bcrypt]
+
+# Rate Limiting
+slowapi>=0.1.8
+
+# File handling
+python-multipart
+
+# Testing
+pytest
+pytest-asyncio
+httpx
+
+# Code quality
+ruff
