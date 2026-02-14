@@ -6,14 +6,9 @@ export const authService = {
    * Login do usuário
    */
   login: async (credentials: LoginRequest): Promise<LoginResponse> => {
-    const formData = new URLSearchParams()
-    formData.append('username', credentials.username)
-    formData.append('password', credentials.password)
-
-    const { data } = await api.post<LoginResponse>('/api/auth/login', formData, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
+    const { data } = await api.post<LoginResponse>('/api/auth/login', {
+      email: credentials.email,
+      senha: credentials.password,
     })
     return data
   },

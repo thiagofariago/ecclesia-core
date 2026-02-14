@@ -33,7 +33,7 @@ export const LoginPage: React.FC = () => {
       setIsLoading(true)
       setError(null)
       await login({
-        username: data.email,
+        email: data.email,
         password: data.password,
       })
       navigate('/')

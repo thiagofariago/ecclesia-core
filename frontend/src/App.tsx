@@ -4,7 +4,9 @@ import { useAuth } from './hooks/useAuth'
 import { Layout } from './components/layout/Layout'
 import { LoginPage } from './pages/LoginPage'
 import { DashboardPage } from './pages/DashboardPage'
+import { ParoquiasPage } from './pages/ParoquiasPage'
 import { DizimistasPage } from './pages/DizimistasPage'
+import { ComunidadesPage } from './pages/ComunidadesPage'
 import { ContribuicoesPage } from './pages/ContribuicoesPage'
 import { AniversariantesPage } from './pages/AniversariantesPage'
 import { RelatoriosPage } from './pages/RelatoriosPage'
@@ -42,7 +44,9 @@ function App() {
           }
         >
           <Route index element={<DashboardPage />} />
+          <Route path="paroquias" element={<ParoquiasPage />} />
           <Route path="dizimistas" element={<DizimistasPage />} />
+          <Route path="comunidades" element={<ComunidadesPage />} />
           <Route path="contribuicoes" element={<ContribuicoesPage />} />
           <Route path="aniversariantes" element={<AniversariantesPage />} />
           <Route path="relatorios" element={<RelatoriosPage />} />

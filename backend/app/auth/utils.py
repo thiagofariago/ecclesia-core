@@ -5,13 +5,10 @@ Funções para hash de senha e geração/validação de tokens JWT.
 from datetime import datetime, timedelta
 from typing import Optional
 
+import bcrypt
 from jose import JWTError, jwt
-from passlib.context import CryptContext
 
 from app.config import settings
-
-# Contexto para hash de senhas
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
@@ -25,7 +22,7 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     Returns:
         True se a senha corresponde, False caso contrário
     """
-    return pwd_context.verify(plain_password, hashed_password)
+    return bcrypt.checkpw(plain_password.encode('utf-8'), hashed_password.encode('utf-8'))
 
 
 def get_password_hash(password: str) -> str:
@@ -38,7 +35,11 @@ def get_password_hash(password: str) -> str:
     Returns:
         Hash da senha
     """
-    return pwd_context.hash(password)
+    # BCrypt tem limite de 72 bytes
+    password_bytes = password.encode('utf-8')[:72]
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(password_bytes, salt)
+    return hashed.decode('utf-8')
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:

@@ -6,6 +6,13 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 3000,
+    strictPort: true,
+    watch: {
+      usePolling: true,
+    },
+    hmr: {
+      clientPort: 5173,
+    },
     proxy: {
       '/api': {
         target: 'http://backend:8000',
